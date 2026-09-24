@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genuine Garage Doors | Local Installation Experts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== CSS Reset & Base ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1e3a5f;
+      --accent: #e67e22;
+      --accent-hover: #d35400;
+      --text: #2c3e50;
+      --text-light: #7f8c8d;
+      --bg: #f8f9fa;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg);
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(30, 58, 95, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      transition: background 0.3s ease;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: white !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-hover);
+      color: white !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background: 
+        linear-gradient(rgba(30, 58, 95, 0.75), rgba(30, 58, 95, 0.85)),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      margin-left: 0.75rem;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    /* ===== Sections Common ===== */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ===== Reveal Animation ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ===== Services ===== */
+    .services {
+      background: var(--white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .service-card {
+      background: var(--bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--primary);
+      color: white;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .service-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* ===== Gallery ===== */
+    .gallery {
+      background: var(--bg);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,58,95,0.55), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item .zoom-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 2;
+      pointer-events: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .gallery-item:hover .zoom-icon {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .gallery-item .zoom-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(10, 18, 30, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 1rem;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1100px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img-wrap {
+      position: relative;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transform: scale(0.95);
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .lightbox.active .lightbox-img-wrap img {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .lightbox-caption {
+      color: rgba(255,255,255,0.85);
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .lightbox-counter {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      margin-top: 0.35rem;
+    }
+
+    /* Close button */
+    .lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.08);
+    }
+
+    .lightbox-close svg {
+      width: 22px;
+      height: 22px;
+      stroke: white;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    /* Nav arrows */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255,255,255,0.28);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox-nav.prev {
+      left: 1rem;
+    }
+
+    .lightbox-nav.next {
+      right: 1rem;
+    }
+
+    .lightbox-nav svg {
+      width: 24px;
+      height: 24px;
+      stroke: white;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .lightbox-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* ===== About ===== */
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-content h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .about-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat h4 {
+      font-size: 1.75rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .stat p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* ===== Contact / CTA ===== */
+    .contact {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact p {
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #152a45;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 0.75rem;
+        display: inline-block;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      .lightbox-nav {
+        width: 44px;
+        height: 44px;
+      }
+
+      .lightbox-nav.prev {
+        left: 0.5rem;
+      }
+
+      .lightbox-nav.next {
+        right: 0.5rem;
+      }
+
+      .lightbox-close {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo">Genuine<span>Doors</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content reveal">
+      <h1>Expert Garage Door Installation & Repair</h1>
+      <p>Locally owned. Professionally installed. Beautiful, secure, and reliable garage doors for homes across the area.</p>
+      <div>
+        <a href="#contact" class="btn">Free Estimate</a>
+        <a href="#gallery" class="btn btn-outline">View Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Our Services</h2>
+        <p>From brand-new installations to emergency repairs — we’ve got your garage covered.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🚪</div>
+          <h3>New Installations</h3>
+          <p>Custom-fitted garage doors in a wide range of styles, materials, and finishes to match your home.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🔧</div>
+          <h3>Repairs & Maintenance</h3>
+          <p>Broken springs, cables, openers, and more. Fast, reliable service to get your door working again.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">⚙️</div>
+          <h3>Opener Installation</h3>
+          <p>Smart and traditional garage door openers installed and programmed for convenience and security.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-icon">🛡️</div>
+          <h3>Safety & Upgrades</h3>
+          <p>Weather sealing, insulation, and safety sensors to keep your family and home protected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Our Work</h2>
+        <p>A selection of recent garage door installations for local homeowners. Click any image to view larger.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal reveal-delay-1" data-index="0">
+          <img src="images/gallery-thumb/IMG-20260919-WA0006.jpg" alt="Dark wood-grain sectional garage door installation" data-full="images/gallery/IMG-20260919-WA0006.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="1">
+          <img src="images/gallery-thumb/IMG-20260919-WA0007.jpg" alt="Wide dark wood-grain sectional garage door, side view" data-full="images/gallery/IMG-20260919-WA0007.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="2">
+          <img src="images/gallery-thumb/IMG-20260919-WA0008.jpg" alt="Custom louvre-style sliding driveway gate" data-full="images/gallery/IMG-20260919-WA0008.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="3">
+          <img src="images/gallery-thumb/IMG-20260919-WA0009.jpg" alt="Custom wood carriage-style garage door with wrought iron hardware" data-full="images/gallery/IMG-20260919-WA0009.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="4">
+          <img src="images/gallery-thumb/IMG-20260919-WA0010.jpg" alt="Interior view of a roll-up garage door" data-full="images/gallery/IMG-20260919-WA0010.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="5">
+          <img src="images/gallery-thumb/IMG-20260919-WA0011.jpg" alt="Full-view aluminium and glass sectional garage door" data-full="images/gallery/IMG-20260919-WA0011.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="6">
+          <img src="images/gallery-thumb/IMG-20260919-WA0012.jpg" alt="Natural wood grain panel garage door on brick home" data-full="images/gallery/IMG-20260919-WA0012.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="7">
+          <img src="images/gallery-thumb/IMG-20260919-WA0013.jpg" alt="Dark tinted glass and aluminium sectional garage door" data-full="images/gallery/IMG-20260919-WA0013.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="8">
+          <img src="images/gallery-thumb/IMG-20260919-WA0014.jpg" alt="Charcoal grey horizontal panel sectional door on new build" data-full="images/gallery/IMG-20260919-WA0014.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="9">
+          <img src="images/gallery-thumb/IMG-20260919-WA0015.jpg" alt="Modern dark wood-look door with diagonal mirrored accents" data-full="images/gallery/IMG-20260919-WA0015.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="10">
+          <img src="images/gallery-thumb/IMG-20260919-WA0016.jpg" alt="Classic raised-panel wood garage door" data-full="images/gallery/IMG-20260919-WA0016.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="11">
+          <img src="images/gallery-thumb/IMG-20260919-WA0017.jpg" alt="Double garage with matching wood-grain sectional doors" data-full="images/gallery/IMG-20260919-WA0017.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="12">
+          <img src="images/gallery-thumb/IMG-20260919-WA0018.jpg" alt="Reflective dark aluminium sectional garage door" data-full="images/gallery/IMG-20260919-WA0018.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="13">
+          <img src="images/gallery-thumb/IMG-20260919-WA0019.jpg" alt="Full-view glass garage door with bronze frame" data-full="images/gallery/IMG-20260919-WA0019.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-3" data-index="14">
+          <img src="images/gallery-thumb/IMG-20260919-WA0020.jpg" alt="Dark grey sectional garage door in new-build carport" data-full="images/gallery/IMG-20260919-WA0020.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="15">
+          <img src="images/gallery-thumb/IMG-20260919-WA0021.jpg" alt="Full-view tinted glass sectional door mid-installation" data-full="images/gallery/IMG-20260919-WA0021.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="16">
+          <img src="images/gallery-thumb/IMG-20260919-WA0022.jpg" alt="Dark roller door in a covered driveway" data-full="images/gallery/IMG-20260919-WA0022.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="17">
+          <img src="images/gallery-thumb/IMG-20260919-WA0023.jpg" alt="Bronze-framed full-view glass garage door, angled view" data-full="images/gallery/IMG-20260919-WA0023.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="18">
+          <img src="images/gallery-thumb/IMG-20260919-WA0024.jpg" alt="Dark wood-grain panel garage door on a carport" data-full="images/gallery/IMG-20260919-WA0024.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="19">
+          <img src="images/gallery-thumb/IMG-20260919-WA0025.jpg" alt="Light horizontal wood plank sectional garage door" data-full="images/gallery/IMG-20260919-WA0025.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="20">
+          <img src="images/gallery-thumb/IMG-20260919-WA0026.jpg" alt="Horizontal wood plank garage door, house exterior" data-full="images/gallery/IMG-20260919-WA0026.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="21">
+          <img src="images/gallery-thumb/IMG-20260919-WA0027.jpg" alt="Dark wood-grain sectional door on a construction site" data-full="images/gallery/IMG-20260919-WA0027.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="22">
+          <img src="images/gallery-thumb/IMG-20260919-WA0028.jpg" alt="Garage door motor and opener installation, interior view" data-full="images/gallery/IMG-20260919-WA0028.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="23">
+          <img src="images/gallery-thumb/IMG-20260919-WA0029.jpg" alt="Charcoal full-view glass sectional garage door, angled" data-full="images/gallery/IMG-20260919-WA0029.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="24">
+          <img src="images/gallery-thumb/IMG-20260919-WA0030.jpg" alt="Black sectional garage door on a house with red trim" data-full="images/gallery/IMG-20260919-WA0030.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="25">
+          <img src="images/gallery-thumb/IMG-20260919-WA0031.jpg" alt="Horizontal wood plank garage door on brick home" data-full="images/gallery/IMG-20260919-WA0031.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3" data-index="26">
+          <img src="images/gallery-thumb/IMG-20260919-WA0032.jpg" alt="Dark wood-grain sectional door framed by classic columns" data-full="images/gallery/IMG-20260919-WA0032.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="27">
+          <img src="images/gallery-thumb/IMG-20260919-WA0033.jpg" alt="Frameless glass garage door mid-installation" data-full="images/gallery/IMG-20260919-WA0033.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="28">
+          <img src="images/gallery-thumb/IMG-20260919-WA0034.jpg" alt="Double wood-panel garage doors on a brick home" data-full="images/gallery/IMG-20260919-WA0034.jpg">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content reveal">
+          <h2>Local Experts You Can Trust</h2>
+          <p>We’ve been installing and servicing garage doors for homeowners in the area for over 15 years. Every job is handled by experienced technicians who take pride in clean workmanship and clear communication.</p>
+          <p>Whether you need a simple repair or a complete custom installation, we treat your home like our own.</p>
+          <div class="stats">
+            <div class="stat">
+              <h4>15+</h4>
+              <p>Years Experience</p>
+            </div>
+            <div class="stat">
+              <h4>2,400+</h4>
+              <p>Doors Installed</p>
+            </div>
+            <div class="stat">
+              <h4>100%</h4>
+              <p>Locally Owned</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-image reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Technician working on garage door">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <h2>Ready for a New Garage Door?</h2>
+        <p>Get a free, no-obligation estimate. We’re happy to come out, take measurements, and walk you through your options.</p>
+        <a href="tel:+15551234567" class="btn">Call (555) 123-4567</a>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item reveal reveal-delay-1">
+          <strong>Phone</strong>
+          (555) 123-4567
+        </div>
+        <div class="contact-item reveal reveal-delay-2">
+          <strong>Email</strong>
+          hello@genuinegaragedoors.local
+        </div>
+        <div class="contact-item reveal reveal-delay-3">
+          <strong>Service Area</strong>
+          Greater Metro & Surrounding Areas
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Genuine Garage Doors. All rights reserved. Locally owned & operated.</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="">
+      </div>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+      <p class="lightbox-counter" id="lightboxCounter"></p>
+    </div>
+  </div>
+
+  <script>
+    // ===== Mobile menu =====
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ===== Reveal on scroll =====
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    document.querySelector('.hero .reveal').classList.add('visible');
+
+    // ===== Lightbox Gallery =====
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    let currentIndex = 0;
+    const images = Array.from(galleryItems).map(item => {
+      const img = item.querySelector('img');
+      return {
+        src: img.dataset.full || img.src,
+        alt: img.alt
+      };
+    });
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open');
+      // Focus trap helper
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.classList.remove('lightbox-open');
+    }
+
+    function updateLightbox() {
+      const img = images[currentIndex];
+      // Reset animation
+      lightboxImg.style.opacity = '0';
+      lightboxImg.style.transform = 'scale(0.95)';
+
+      // Small delay so the transition plays
+      requestAnimationFrame(() => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+        // Force reflow then animate in
+        void lightboxImg.offsetWidth;
+        lightboxImg.style.opacity = '1';
+        lightboxImg.style.transform = 'scale(1)';
+      });
+
+      // Update nav button states (optional – keep always enabled for loop)
+      lightboxPrev.disabled = false;
+      lightboxNext.disabled = false;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateLightbox();
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateLightbox();
+    }
+
+    // Open on gallery item click
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const index = parseInt(item.dataset.index, 10);
+        openLightbox(index);
+      });
+    });
+
+    // Close controls
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Navigation
+    lightboxPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+    lightboxNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
+</body>
+</html>
