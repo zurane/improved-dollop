@@ -919,15 +919,15 @@
       <div class="about-grid">
         <div class="about-content reveal">
           <h2>Local Experts You Can Trust</h2>
-          <p>We’ve been installing and servicing garage doors for homeowners in the area for over 15 years. Every job is handled by experienced technicians who take pride in clean workmanship and clear communication.</p>
+          <p>We’ve been installing and servicing garage doors for homeowners in the area for over 15 years. Every job is handled by experienced technicians who take pride in clean workmanship and careful attention to detail.</p>
           <p>Whether you need a simple repair or a complete custom installation, we treat your home like our own.</p>
           <div class="stats">
             <div class="stat">
-              <h4>15+</h4>
+              <h4>5 years</h4>
               <p>Years Experience</p>
             </div>
             <div class="stat">
-              <h4>2,400+</h4>
+              <h4>25+</h4>
               <p>Doors Installed</p>
             </div>
             <div class="stat">
@@ -1000,46 +1000,48 @@
     toggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
-    document.querySelectorAll('.nav-links a').forEach(link => {
+
+    navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
     // ===== Reveal on scroll =====
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-    document.querySelector('.hero .reveal').classList.add('visible');
+    }, { threshold: 0.15 });
 
-    // ===== Lightbox Gallery =====
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    revealItems.forEach(item => revealObserver.observe(item));
+
+    // ===== Lightbox =====
+    const galleryItems = [...document.querySelectorAll('.gallery-item')];
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
     const lightboxCounter = document.getElementById('lightboxCounter');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
 
     let currentIndex = 0;
-    const images = Array.from(galleryItems).map(item => {
-      const img = item.querySelector('img');
-      return {
-        src: img.dataset.full || img.src,
-        alt: img.alt
-      };
-    });
 
     function openLightbox(index) {
       currentIndex = index;
-      updateLightbox();
+      const item = galleryItems[currentIndex];
+      const img = item.querySelector('img');
+      lightboxImg.src = img.dataset.full;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = img.alt;
+      lightboxCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
       lightbox.classList.add('active');
       document.body.classList.add('lightbox-open');
-      // Focus trap helper
-      lightboxClose.focus();
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === galleryItems.length - 1;
     }
 
     function closeLightbox() {
@@ -1047,70 +1049,37 @@
       document.body.classList.remove('lightbox-open');
     }
 
-    function updateLightbox() {
-      const img = images[currentIndex];
-      // Reset animation
-      lightboxImg.style.opacity = '0';
-      lightboxImg.style.transform = 'scale(0.95)';
-
-      // Small delay so the transition plays
-      requestAnimationFrame(() => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightboxCaption.textContent = img.alt;
-        lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
-
-        // Force reflow then animate in
-        void lightboxImg.offsetWidth;
-        lightboxImg.style.opacity = '1';
-        lightboxImg.style.transform = 'scale(1)';
-      });
-
-      // Update nav button states (optional – keep always enabled for loop)
-      lightboxPrev.disabled = false;
-      lightboxNext.disabled = false;
+    function showNext() {
+      if (currentIndex < galleryItems.length - 1) {
+        openLightbox(currentIndex + 1);
+      }
     }
 
     function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateLightbox();
+      if (currentIndex > 0) {
+        openLightbox(currentIndex - 1);
+      }
     }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateLightbox();
-    }
-
-    // Open on gallery item click
-    galleryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const index = parseInt(item.dataset.index, 10);
-        openLightbox(index);
-      });
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => openLightbox(index));
     });
 
-    // Close controls
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
     });
 
-    // Navigation
-    lightboxPrev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showPrev();
-    });
-    lightboxNext.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showNext();
-    });
-
-    // Keyboard support
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (event) => {
       if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowRight') showNext();
+      if (event.key === 'ArrowLeft') showPrev();
     });
   </script>
 </body>
